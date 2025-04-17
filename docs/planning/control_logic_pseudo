@@ -1,0 +1,19 @@
+On_Mode_Change(new_mode):
+    mode = new_mode
+    mode_start_time = Read_I2C_Time(RTC_address)
+    Reset_Moving_Average_Buffers()
+
+Loop every control cycle:
+    If elapsed_time >= 5 minutes:
+        Disable_Peltier()
+    Else if mode == 'heat':
+        Set_Heat_Mode()
+    Else if mode == 'cool':
+        Set_Cool_Mode()
+    Else if mode == 'match':
+        If plant_avg < ambient_avg - threshold:
+            Set_Heat_Mode()
+        Else if plant_avg > ambient_avg + threshold:
+            Set_Cool_Mode()
+        Else:
+            Disable_Peltier()

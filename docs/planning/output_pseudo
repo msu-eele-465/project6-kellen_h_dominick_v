@@ -1,0 +1,15 @@
+Initialize_Peltier_GPIO()
+Initialize_LED_Bar()
+
+Loop every 1 second:
+    If heating_active:
+        Light_Bar_Right()
+        Activate_Heat_Relay()
+        Deactivate_Cool_Relay()
+    Else if cooling_active:
+        Light_Bar_Left()
+        Activate_Cool_Relay()
+        Deactivate_Heat_Relay()
+    Else:
+        Turn_Off_LED_Bar()
+        Deactivate_Both_Relays()

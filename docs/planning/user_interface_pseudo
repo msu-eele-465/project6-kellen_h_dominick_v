@@ -1,0 +1,13 @@
+On_Keypad_Input(key):
+    If key in ['A', 'B', 'C', 'D']:
+        On_Mode_Change(key)
+    If key is digit:
+        Append_To_WindowSize_Input(key)
+    If key == 'Enter':
+        window_size = Parse_Input()
+        Update_WindowSize(window_size)
+
+Loop every 2 seconds:
+    Display_Line1 = Format_Mode(mode) + Format_Temp(ambient_avg)
+    Display_Line2 = Format_Window(window_size) + Format_Time(elapsed_time) + Format_Temp(plant_avg)
+    Update_LCD(Display_Line1, Display_Line2)
