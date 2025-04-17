@@ -1,0 +1,17 @@
+Initialize_ADC()
+Initialize_I2C()
+
+Loop every 0.5 seconds:
+    raw_adc = Read_ADC(LM19_channel)
+    voltage = Convert_To_Voltage(raw_adc)
+    ambient_temp = Convert_Voltage_To_Temperature(voltage)
+    Update_Moving_Average(ambient_temp, ambient_buffer)
+
+    Send_I2C_Request(LM92_address)
+    raw_plant = Read_I2C_Data()
+    plant_temp = Convert_Raw_To_Temp_LM92(raw_plant)
+    Update_Moving_Average(plant_temp, plant_buffer)
+
+Loop every 1 second:
+    current_time = Read_I2C_Time(RTC_address)
+    elapsed_time = current_time - mode_start_time
